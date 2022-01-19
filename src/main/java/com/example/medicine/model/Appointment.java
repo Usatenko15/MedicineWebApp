@@ -23,7 +23,4 @@ public class Appointment {
 
     @OneToOne(fetch = FetchType.LAZY)
     private Patient patient;
-
-    private LocalDateTime timeSlot;
-
 }

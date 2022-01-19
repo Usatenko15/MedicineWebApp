@@ -24,4 +24,12 @@ public class DistrictController {
     @GetMapping
     public List<District> getAllDistrict(){ return  districtService.getAll();}
 
+    @PutMapping("/{districtId}/clinics/{clinicId}")
+    public District addClinicToDistrict(
+            @PathVariable Long districtId,
+            @PathVariable Long clinicId
+    ) {
+        return districtService.addClinicToDistrict(districtId,clinicId);
+    }
+
 }

@@ -1,5 +1,7 @@
 package com.example.medicine.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,14 +16,18 @@ import javax.persistence.*;
 public class Patient {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String name;
 
     private String dateBirth;
 
-    @ManyToOne
-    private Clinic clinic;
+    @JsonIgnore
+    @OneToOne(mappedBy = "patient")
+    private Appointment appointment;
 
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Clinic clinic;
 }
