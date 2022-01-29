@@ -1,5 +1,6 @@
 package com.example.medicine.controllers;
 
+import com.example.medicine.dto.ClinicDTO;
 import com.example.medicine.model.Clinic;
 import com.example.medicine.services.ClinicService;
 import org.springframework.http.MediaType;
@@ -17,16 +18,16 @@ public class ClinicController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Clinic createClinic(@RequestBody Clinic clinic){ return clinicService.createClinic(clinic);}
+    public ClinicDTO createClinic(@RequestBody Clinic clinic){ return clinicService.createClinic(clinic);}
 
     @GetMapping
-    public List<Clinic> getAllClinics(){return clinicService.getAllClinic();}
+    public List<ClinicDTO> getAllClinics(){return clinicService.getAllClinic();}
 
     @GetMapping("/{clinicId}")
-    public Clinic getClinic(@PathVariable Long clinicId){return clinicService.getClinic(clinicId);}
+    public ClinicDTO getClinic(@PathVariable Long clinicId){return clinicService.getClinic(clinicId);}
 
     @PutMapping("/{clinicId}/doctors/{doctorId}")
-    public Clinic employeeDoctorToClinic(
+    public ClinicDTO employeeDoctorToClinic(
             @PathVariable Long clinicId,
             @PathVariable Long doctorId
     ) {
@@ -34,7 +35,7 @@ public class ClinicController {
     }
 
     @PutMapping("/{clinicId}/patients/{patientId}")
-    public Clinic addPatientToClinic(
+    public ClinicDTO addPatientToClinic(
             @PathVariable Long clinicId,
             @PathVariable Long patientId
     ) {

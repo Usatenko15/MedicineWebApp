@@ -32,14 +32,14 @@ public class AppointmentController {
         return appointmentService.getAll();
     }
 
-    @PutMapping("/{doctorID}/{patientId}")
-    public Appointment sadsadsad(@PathVariable Long doctorID, @PathVariable Long patientId){
-        Doctor doctor = doctorRepository.findById(doctorID).get();
-        Patient patient = patientRepository.findById(patientId).get();
-        Appointment appointment = new Appointment();
-        appointment.setDoctor(doctor);
-        appointment.setPatient(patient);
-        return appointmentRepository.save(appointment);
-    }
+//    @PutMapping("/{doctorID}/{patientId}")
+//    public Appointment sadsadsad(@PathVariable Long doctorID, @PathVariable Long patientId){
+//        Doctor doctor = doctorRepository.findById(doctorID).get();
+//        Patient patient = patientRepository.findById(patientId).get();
+//        Appointment appointment = new Appointment();
+//        appointment.setDoctor(doctor);
+//        appointment.setPatient(patient);
+//        return appointmentRepository.save(appointment);
+//    }
 
 }

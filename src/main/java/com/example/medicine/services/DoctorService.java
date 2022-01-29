@@ -1,11 +1,13 @@
 package com.example.medicine.services;
 
+import com.example.medicine.dto.DoctorDTO;
 import com.example.medicine.model.District;
 import com.example.medicine.model.Doctor;
 import com.example.medicine.repository.DoctorRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class DoctorService {
@@ -15,6 +17,6 @@ public class DoctorService {
         this.doctorRepository = doctorRepository;
     }
 
-    public Doctor CreateDoctor(Doctor doctor){ return doctorRepository.save(doctor);}
-    public List<Doctor> getAll() {return doctorRepository.findAll();}
+    public DoctorDTO createDoctor(Doctor doctor){ return doctorRepository.save(doctor).toDTO();}
+    public List<DoctorDTO> getAll() {return doctorRepository.findAll().stream().map(doctor -> doctor.toDTO()).collect(Collectors.toList());}
 }

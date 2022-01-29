@@ -1,6 +1,6 @@
 package com.example.medicine.controllers;
 
-import com.example.medicine.model.District;
+import com.example.medicine.dto.DoctorDTO;
 import com.example.medicine.model.Doctor;
 import com.example.medicine.services.DoctorService;
 import org.springframework.web.bind.annotation.*;
@@ -17,9 +17,9 @@ public class DoctorController {
     }
 
     @PostMapping
-    public Doctor createDoctor(@RequestBody Doctor doctor){ return doctorService.CreateDoctor(doctor);}
+    public DoctorDTO createDoctor(@RequestBody Doctor doctor){ return doctorService.createDoctor(doctor);}
 
     @GetMapping
-    public List<Doctor> getAllDoctors(){ return  doctorService.getAll();}
+    public List<DoctorDTO> getAllDoctors(){ return  doctorService.getAll();}
 
 }

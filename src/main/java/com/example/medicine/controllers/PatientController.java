@@ -1,5 +1,7 @@
 package com.example.medicine.controllers;
 
+import com.example.medicine.dto.ClinicDTO;
+import com.example.medicine.dto.PatientDTO;
 import com.example.medicine.model.Doctor;
 import com.example.medicine.model.Patient;
 import com.example.medicine.services.PatientService;
@@ -20,6 +22,9 @@ public class PatientController {
     @PostMapping
     public Patient createPatient(@RequestBody Patient patient){ return patientService.createPatient(patient);}
 
+    @GetMapping("/{patientId}")
+    public PatientDTO getPatient(@PathVariable Long patientId){return patientService.getPatient(patientId);}
+
     @GetMapping
-    public List<Patient> getAllPatients(){ return  patientService.getAll();}
+    public List<PatientDTO> getAllPatients(){ return  patientService.getAll();}
 }
