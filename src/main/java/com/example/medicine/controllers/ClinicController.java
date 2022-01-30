@@ -31,7 +31,7 @@ public class ClinicController {
             @PathVariable Long clinicId,
             @PathVariable Long doctorId
     ) {
-        return clinicService.employeDoctorToClinic(clinicId, doctorId);
+        return clinicService.employeeDoctorToClinic(clinicId, doctorId);
     }
 
     @PutMapping("/{clinicId}/patients/{patientId}")

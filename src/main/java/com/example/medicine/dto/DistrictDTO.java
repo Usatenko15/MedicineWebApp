@@ -1,17 +1,18 @@
 package com.example.medicine.dto;
 
 import com.example.medicine.model.Clinic;
-import com.example.medicine.model.Patient;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
-import javax.persistence.Transient;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Data
-public class PatientDTO {
-    private long id;
+public class DistrictDTO {
+    private Long id;
     private String name;
-    private String dateBirth;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private ClinicDTO clinic;

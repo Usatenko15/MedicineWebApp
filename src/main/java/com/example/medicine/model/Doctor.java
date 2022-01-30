@@ -34,15 +34,17 @@ public class Doctor {
     @ManyToMany(mappedBy = "doctors", fetch = FetchType.EAGER)
     private Set<Clinic> clinics = new HashSet<>();
 
-    @OneToOne(mappedBy = "doctor")
-    private Appointment appointment;
+    @OneToMany(mappedBy = "doctor", fetch = FetchType.EAGER)
+    private Set<Appointment> appointment = new HashSet<>();
 
-    public DoctorDTO toDTO() {
+    public DoctorDTO toDTO(boolean relations) {
         DoctorDTO doctorDTO = new DoctorDTO();
-        doctorDTO.setId(this.getId());
-        doctorDTO.setName(this.getName());
-        doctorDTO.setDegree(this.getDegree());
-//        doctorDTO.setClinicsDTO(this.getClinics().stream().map(clinic -> clinic.toDTO()).collect(Collectors.toSet()));
+        doctorDTO.setId(this.id);
+        doctorDTO.setName(this.name);
+        doctorDTO.setDegree(this.degree);
+        if (relations == true){
+            doctorDTO.setClinicsDTO(this.clinics.stream().map(clinic -> clinic.toDTO(false)).collect(Collectors.toSet()));
+        }
         return doctorDTO;
     }
 

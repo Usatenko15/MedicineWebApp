@@ -22,13 +22,6 @@ public class ClinicDTO {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private Set<DoctorDTO> doctorsDTO;
 
-//    public static ClinicDTO toDTO(Clinic clinic){
-//        ClinicDTO clinicDTO = new ClinicDTO();
-//        clinicDTO.setId(clinic.getId());
-//        clinicDTO.setName(clinic.getName());
-//        clinicDTO.setAddress(clinic.getAddress());
-//        clinicDTO.setDoctorsDTO(clinic.getDoctors().stream().map(doctor -> DoctorDTO.toDTO(doctor)).collect(Collectors.toSet()));
-////        clinicDTO.setPatientsDTO(cl);
-//        return clinicDTO;
-//    }
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private DistrictDTO districtDTO;
 }

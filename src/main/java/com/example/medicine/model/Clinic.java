@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -39,7 +40,6 @@ public class Clinic {
     @OneToMany(mappedBy = "clinic", fetch = FetchType.EAGER)
     private Set<Patient> patients = new HashSet<>();
 
-    @JsonIgnore
     @OneToOne(mappedBy = "clinic")
     private District district;
 
@@ -53,13 +53,19 @@ public class Clinic {
         patient.setClinic(this);
     }
 
-    public ClinicDTO toDTO() {
+    public ClinicDTO toDTO(boolean relations) {
         ClinicDTO clinicDTO = new ClinicDTO();
         clinicDTO.setId(this.getId());
         clinicDTO.setName(this.getName());
         clinicDTO.setAddress(this.getAddress());
-        clinicDTO.setDoctorsDTO(this.getDoctors().stream().map(doctor -> doctor.toDTO()).collect(Collectors.toSet()));
-        clinicDTO.setPatientsDTO(this.getPatients().stream().map(patient -> PatientDTO.toDTO(patient)).collect(Collectors.toSet()));
+        if(relations){
+            clinicDTO.setDoctorsDTO(this.getDoctors().stream().map(doctor -> doctor.toDTO(false)).collect(Collectors.toSet()));
+            clinicDTO.setPatientsDTO(this.getPatients().stream().map(patient -> patient.toDTO(false)).collect(Collectors.toSet()));
+            if (this.district == null) {
+                this.toDTO(false);
+            }
+            else clinicDTO.setDistrictDTO(this.district.toDTO(false));
+        }
         return clinicDTO;
     }
 

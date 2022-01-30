@@ -20,10 +20,10 @@ public class PatientController {
 
 
     @PostMapping
-    public Patient createPatient(@RequestBody Patient patient){ return patientService.createPatient(patient);}
+    public PatientDTO createPatient(@RequestBody Patient patient){ return patientService.createPatient(patient);}
 
     @GetMapping("/{patientId}")
-    public PatientDTO getPatient(@PathVariable Long patientId){return patientService.getPatient(patientId);}
+    public PatientDTO getPatient(@PathVariable Long patientId) throws Exception {return patientService.getPatient(patientId);}
 
     @GetMapping
     public List<PatientDTO> getAllPatients(){ return  patientService.getAll();}

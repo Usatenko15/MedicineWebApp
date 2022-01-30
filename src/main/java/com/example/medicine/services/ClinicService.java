@@ -1,8 +1,6 @@
 package com.example.medicine.services;
 
 import com.example.medicine.dto.ClinicDTO;
-import com.example.medicine.dto.DoctorDTO;
-import com.example.medicine.dto.PatientDTO;
 import com.example.medicine.model.Clinic;
 import com.example.medicine.model.Doctor;
 import com.example.medicine.model.Patient;
@@ -12,7 +10,6 @@ import com.example.medicine.repository.PatientRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,27 +27,22 @@ public class ClinicService {
 
 
     public ClinicDTO createClinic(Clinic clinic) {
-        return clinicRepository.save(clinic).toDTO();
+        return clinicRepository.save(clinic).toDTO(true);
     }
 
     public ClinicDTO getClinic(Long id){
-//         ClinicDTO clinicDTO = ClinicDTO.toDTO(clinicRepository.findById(id).get());
-//         clinicDTO.setPatientsDTO(patientRepository.findPatientByClinic_Id(id));
-//         Set<DoctorDTO> doctorsDTO = clinicRepository.findById(id).get().
-//                 getDoctors().stream().map(doctor -> DoctorDTO.toDTO(doctor)).collect(Collectors.toSet());
-//         clinicDTO.setDoctorsDTO(doctorsDTO);
-        return clinicRepository.findById(id).get().toDTO();
+        return clinicRepository.findById(id).get().toDTO(true);
     }
 
     public List<ClinicDTO> getAllClinic() {
-        return clinicRepository.findAll().stream().map(clinic-> clinic.toDTO()).collect(Collectors.toList());
+        return clinicRepository.findAll().stream().map(clinic-> clinic.toDTO(true)).collect(Collectors.toList());
     }
 
-    public ClinicDTO employeDoctorToClinic(Long clinicId, Long doctorId) {
+    public ClinicDTO employeeDoctorToClinic(Long clinicId, Long doctorId) {
         Clinic clinic = clinicRepository.findById(clinicId).get();
         Doctor doctor = doctorRepository.findById(doctorId).get();
         clinic.addDoctor(doctor);
-        return clinicRepository.save(clinic).toDTO();
+        return clinicRepository.save(clinic).toDTO(true);
     }
 
     public ClinicDTO addPatientToClinic(Long clinicId, Long patientId) {
@@ -58,8 +50,7 @@ public class ClinicService {
         Patient patient = patientRepository.findById(patientId).get();
         clinic.addPatient(patient);
         patientRepository.save(patient);
-//        clinic.addPatient(patient);
-        return clinic.toDTO();
+        return clinic.toDTO(true);
     }
 
 }

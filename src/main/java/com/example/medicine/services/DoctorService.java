@@ -17,6 +17,6 @@ public class DoctorService {
         this.doctorRepository = doctorRepository;
     }
 
-    public DoctorDTO createDoctor(Doctor doctor){ return doctorRepository.save(doctor).toDTO();}
-    public List<DoctorDTO> getAll() {return doctorRepository.findAll().stream().map(doctor -> doctor.toDTO()).collect(Collectors.toList());}
+    public DoctorDTO createDoctor(Doctor doctor){ return doctorRepository.save(doctor).toDTO(true);}
+    public List<DoctorDTO> getAll() {return doctorRepository.findAll().stream().map(doctor -> doctor.toDTO(true)).collect(Collectors.toList());}
 }
