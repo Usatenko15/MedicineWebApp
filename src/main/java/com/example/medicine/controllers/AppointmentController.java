@@ -16,7 +16,7 @@ import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("api/v1/appointments")
+@RequestMapping("api/v1/appointment")
 public class AppointmentController {
     private final AppointmentService appointmentService;
 

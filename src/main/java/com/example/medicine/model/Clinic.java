@@ -7,9 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -20,8 +18,8 @@ import java.util.stream.Collectors;
 
 @Entity
 @Table
-@Data
-@AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
 //@JsonIdentityInfo(
 //        generator = ObjectIdGenerators.PropertyGenerator.class,
@@ -34,10 +32,10 @@ public class Clinic {
     private String name;
     private String address;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Doctor> doctors = new HashSet<>();
 
-    @OneToMany(mappedBy = "clinic", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "clinic", fetch = FetchType.LAZY)
     private Set<Patient> patients = new HashSet<>();
 
     @OneToOne(mappedBy = "clinic")

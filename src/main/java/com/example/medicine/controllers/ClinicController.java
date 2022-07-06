@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/clinics")
+@RequestMapping("/api/v1/clinic")
 public class ClinicController {
     private final ClinicService clinicService;
 
@@ -26,7 +26,7 @@ public class ClinicController {
     @GetMapping("/{clinicId}")
     public ClinicDTO getClinic(@PathVariable Long clinicId){return clinicService.getClinic(clinicId);}
 
-    @PutMapping("/{clinicId}/doctors/{doctorId}")
+    @PutMapping("/{clinicId}/doctor/{doctorId}")
     public ClinicDTO employeeDoctorToClinic(
             @PathVariable Long clinicId,
             @PathVariable Long doctorId
@@ -34,7 +34,7 @@ public class ClinicController {
         return clinicService.employeeDoctorToClinic(clinicId, doctorId);
     }
 
-    @PutMapping("/{clinicId}/patients/{patientId}")
+    @PutMapping("/{clinicId}/patient/{patientId}")
     public ClinicDTO addPatientToClinic(
             @PathVariable Long clinicId,
             @PathVariable Long patientId

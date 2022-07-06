@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/districts")
+@RequestMapping("/api/v1/district")
 public class DistrictController {
 
     private final DistrictService districtService;
@@ -25,7 +25,7 @@ public class DistrictController {
     @GetMapping
     public List<DistrictDTO> getAllDistrict(){ return  districtService.getAll();}
 
-    @PutMapping("/{districtId}/clinics/{clinicId}")
+    @PutMapping("/{districtId}/clinic/{clinicId}")
     public DistrictDTO addClinicToDistrict(
             @PathVariable Long districtId,
             @PathVariable Long clinicId
